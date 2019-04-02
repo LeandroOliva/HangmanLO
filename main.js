@@ -66,3 +66,56 @@ function startGame(){
     //clears wrong guesses in last round
     document.getElementById("wrong-guesses").innerHTML = wrongGuesses.join(" ");
 }
+//comparisons
+
+function ckeckletter(letter) {
+//boolean will b toggled based on wheather or not user letter is found
+var letterInWord = false;
+//check id is a letter
+for(var i = 0 ; i < numBlanks; i++) {
+    if(chosenWord[i]===letter) {
+        letterInWord=true;
+        }
+    }
+    if(letterInWord){
+         for(var j =0; j < numBlanks; j++){
+             if(chosenWord[j]===letter){
+                  blanksAndSuccesses[j]= letter;
+            }
+        }
+        console.log(blanksAndSuccesses);
+    }
+    else{
+        wrongGuesses.push(letter);
+        numGuesses--;
+    }
+    
+}
+function roundComplete() {
+    console.log(`WinCount: ${winCounter} | LossCount" ${lossCounter} | NumGuesses: ${numGuesses} `);
+
+    document.getElementById("guesses-left").innerHTML=numGuesses;
+
+    document.getElementById("word-blank").innerHTML=blanksAndSuccesses.join(" ");
+
+    document.getElementById("wrong-guesses").innerHTML=wrongGuesses;
+
+    if(lettersInChosenWord.toString()=== blanksAndSuccesses.toString()){
+        winCounter++;
+        alert(`you win`);
+
+        document.getElementById("win-counter").innerHTML=winCounter;
+
+        startGame();
+    }
+    // run out of guesses
+    else if(numGuesses === 0){
+        lossCounter= lossCounter+1;
+        alert(`you lose because you dont know how to gues go play minecraft or something else`)
+
+        document.getElementById("loss-counter").innerHTML=lossCounter;
+    }
+
+
+
+}
