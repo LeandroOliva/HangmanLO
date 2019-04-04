@@ -2,7 +2,7 @@
 //---------------------------------------------------------------------------------------------------
 
 // Arra of Word Options (all lowercase)
-var wordList=["lambirhini","toyota","nissan"];
+var wordList = ["lambirhini","toyota","nissan"];                                                                                                                                                                                         
 
 // Solution will be held here
 var chosenWord = "";
@@ -57,10 +57,10 @@ function startGame(){
     for(var i = 1; i < numBlanks + 1; i++){
         blanksAndSuccesses.push("_");
     }
-    document.getElementById("guesses_left").innerHTML = numGuesses;
+    document.getElementById("guesses-left").innerHTML = numGuesses;
 
     //prints blanks at the begining of each round in the html
-    document.getElementById("word-blanks").innerHTML = blanksAndSuccesses.join("  ＼(^ω ^＼)  ");
+    document.getElementById("word-blanks").innerHTML = blanksAndSuccesses.join(" ");
 
 
     //clears wrong guesses in last round
@@ -119,3 +119,13 @@ function roundComplete() {
 
 
 }
+ startGame();
+
+ document.onkeyup = function(event){
+
+    var letterGuessed = String.fromCharCode(event.keyCode).toLowerCase();
+
+    checkLetters(letterGuessed);
+
+    roundComplete();
+ }
